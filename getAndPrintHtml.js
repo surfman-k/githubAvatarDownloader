@@ -2,7 +2,7 @@ var https = require('https');
 
 function getAndPrintHTML () {
 
-	var buff = [];
+	var buff = "";
 
 	var requestOptions = {
 	  host: 'sytantris.github.io',
@@ -11,8 +11,10 @@ function getAndPrintHTML () {
 
 	https.get(requestOptions, function (response) {
 
+	response.setEncoding('utf8');
+
     response.on('data', function (data) {
-    	buff.push(data);
+    	buff += data;
   	});
 
     response.on('end', function() {
